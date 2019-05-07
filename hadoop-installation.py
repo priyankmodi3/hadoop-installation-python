@@ -40,23 +40,16 @@ if flag == 1
 
     import getpass
     username = getpass.getuser()
-    import socket
-    hostname = socket.gethostname()
     cmd = "sudo chown "+username+":sudo -R /usr/local/hadoop/"
     os.system(cmd)
-
-
-
     cmd = "sudo mkdir -p /usr/local/hadoop_tmp/hdfs/namenode"
     os.system(cmd)
     cmd = "sudo mkdir -p /usr/local/hadoop_tmp/hdfs/datanode"
     os.system(cmd)
     cmd = "sudo chown "+username+":sudo -R /usr/local/hadoop_tmp/"
     os.system(cmd)
-
     cmd = "cd ~"
     os.system(cmd)
-
 
     cmds = ["echo '# -- HADOOP ENVIRONMENT VARIABLES START -- #' >> ~/.bashrc",
     "echo 'export HADOOP_HOME=/usr/local/hadoop' >> ~/.bashrc",
@@ -70,24 +63,18 @@ if flag == 1
     "echo 'export HADOOP_OPTS=\"-Djava.library.path=$HADOOP_HOME/lib\"' >> ~/.bashrc",
     "echo '# -- HADOOP ENVIRONMENT VARIABLES END -- #' >> ~/.bashrc",
     "echo '\n' >> ~/.bashrc"]
-
-
     for i in range(len(cmds)):
         os.system(cmds[i])    
 
 
     temp  = ''
-
     print("changing xml files")
     with open('/usr/local/hadoop/etc/hadoop/hadoop-env.sh', 'r') as content_file:
         content = content_file.read()
         c = str(content)
         temp = c + '\nexport JAVA_HOME=/usr/lib/jvm/java-8-oracle'
-    
-    
     with open('/usr/local/hadoop/etc/hadoop/hadoop-env.sh', 'w+') as content_file:
         content_file.write(temp)
-
 
     #core-site.xml
     with open('/usr/local/hadoop/etc/hadoop/core-site.xml', 'r') as content_file:
@@ -143,4 +130,3 @@ if flag == 1
     "jps"]
     for i in range(len(cmds)):
         os.system(cmds[i])
-
