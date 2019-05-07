@@ -24,10 +24,10 @@ elif returned_value == 0:
 
     
    
-#cmd = 'ssh-keygen -t rsa -P ""'
-#os.system(cmd)
-#cmd = "cat $HOME/.ssh/id_rsa.pub >> $HOME/.ssh/authorized_keys"
-#os.system(cmd)
+cmd = 'ssh-keygen -t rsa -P ""'
+os.system(cmd)
+cmd = "cat $HOME/.ssh/id_rsa.pub >> $HOME/.ssh/authorized_keys"
+os.system(cmd)
 
 cmd = "cd Downloads"
 os.system(cmd)
